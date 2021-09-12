@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>
+            WEB TEST
+        </title>
+    </head>
+    <body>
+    <script>
+    // Persistent Prompt modal
+    function fn() { 
+    var userName;
+    while(!userName) {
+    userName = prompt("Enter your name", "");
+    if(!userName) {
+    alert("Please, we need your name!");
+    } else {
+    document.write(`<h2>Welcome to our word ${userName}</h2>`)
+    }
+    }
+}
+    </script> 
+        <button style="color: #000fff" type ="button" onclick="fn()">Test Me</button> 
+    </body>
+ </html>
