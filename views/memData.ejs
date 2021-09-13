@@ -1,0 +1,67 @@
+<%- include ('coopH/first.ejs') -%>
+
+<% if(membersPage) { %>
+<div class="container-fluid">
+    <div class="text-center text-primary">
+               <h3 style="color: white;"><b>Member's Detail</b></h3>
+    </div>  
+    <hr>
+    <div class="row mr-10">
+            <div class="col-md-6 details"> 
+                <div class="form-group">
+                    <form class= "" action="" method="post" enctype="multipart/form-data">
+                        <div>
+                            <label for="name">Name</label>
+                            <input class="form-control" id="name" name="name" placeholder="<%=membersPage.name %>" disabled></input>
+                        </div>
+                        <div>
+                            <label for="shr">SHARE</label>
+                            <input class="form-control" id="shr" name="share"  placeholder="<%=membersPage.Shares %>" disabled></input>
+                        </div>
+                        <div>
+                            <label for="name">SAVINGS</label>
+                            <input class="form-control" id="Sav" name="savings"  placeholder="<%=membersPage.Savings %>" disabled></input>
+                        </div>
+                        <div>
+                            <label for="bf">buildFund</label>
+                            <input class="form-control" id="bf" name="buildFund"   placeholder="<%=membersPage.buildFund %>" disabled></input>
+                        </div>
+                        <div>
+                            <label for="loan">Loan Bal</label>
+                            <input class="form-control" id="loan" name="loanBal"  placeholder="<%=membersPage.loanBalance %>" disabled></input>
+                        </div>   
+                        <div>
+                        <label for="lrep">Loan Repaid</label>
+                        <input class="form-control" id="lrep" name="loanRep"  placeholder="<%=membersPage.loanRepaid %>" disabled></input>
+                        </div>
+                        <div>
+                            <label for="lrep">Stood For:</label>
+                            <input class="form-control" id="lrep" name="gua" length="8000" placeholder="" disabled></input>
+                            </div>
+                        <div>
+                            <label for="lrep">Net Assets:</label>           
+                            <input class="form-control" id="lrep" name="netAsset"  placeholder="" disabled></input>
+                        </div>
+                        <hr>
+                        <div>
+                            <button type="submit" class=" btn btn-danger align-right"><a href="/logout">Logout</a></button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+             <div class="offset-2 col-md-4" style="border-radius: 1.5pc; border-color: olive; border-style: solid; max-width: 350px; background-color: cyan ; height: 25%;">
+                <h5 ><a href="/loanReq" style="color: lightcoral">APPLY FOR LOAN</a></h5>
+                <h5 ><a href="#" style="color: green;">CHECK YOUR NET ASSET</a></h5>
+                <h5> <a href="#" style="color: maroon">APPLY FOR WITHDRAWAL</a></h5>
+             </div>
+    </div>
+</div>
+<% } else { %>
+    <h2 class="red">No Member with this ID <br> Kindly apply for membership <a class="text-center" href="/signup"></a></h2>
+
+<% } %>
+</div>
+</body>
+</html>
+

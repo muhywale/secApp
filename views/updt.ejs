@@ -1,0 +1,66 @@
+<%- include ('coopH/first.ejs') -%>
+<% if(membersPage) { %>
+<div class="container">
+    <div class="container-fluid instbl">
+        <form class="form-control" action=""  method="POST" enctype="multipart/form-data">
+          <div class="row">
+                <div class ="col-md-4">
+                    <label for="id">ID</label>
+                    <input class="form-control" id="id" name="_id" value="<%= membersPage._id %>">
+                </div>
+                 <div class ="col-md-4">
+                    <label for="shr">Share</label>
+                     <input class="form-control" name="Shares" id="shr"  type="number" placeholder="Share">  
+                 </div>
+                <div class ="col-md-4">
+                    <label for="sav">Savings</label>
+                    <input class="form-control" name="Savings" id="sav"  type="number" placeholder="Savings">  
+                </div>
+          </div>
+            
+         <div class="row">
+                <div class ="col-md-4">
+                     <label for="bf">Build Fund</label>
+                    <input class="form-control"  id="bf" name="buildFund" type="number" placeholder="Build Fund">  
+                </div>
+             <div class ="col-md-4">
+                    <label for="lrp">Loan Repayment</label>
+                    <input class="form-control" id="lrp" name="loanRepaid" type="number" placeholder="Loan Repayment" >  
+            </div>
+            <div class="col-md-4">
+                    <label for="lBal">Loan Balance:</label>
+                    <input class="form-control" id="lBal" name="loanBalance" type="number"  value="<%=membersPage.loanBalance%>">  
+            </div>
+        </div>
+
+        <div class="row">
+                <div class ="col-md-4">
+                    <label for="nwLoan">New Loan</label>
+                    <input class="form-control"  id="nwLoan" name="newLoan"  type="number" placeholder="New Loan">
+                </div>
+                <div class="col-md-4">
+                    <label for="guaI">Guarantor I:</label>
+                    <input class="form-control" id="guaI" name="Guarantor I"  placeholder="">
+                 </div>
+                <div class="col-md-4">
+                    <label for="guaII">Guarantor II:</label>
+                     <input class="form-control" id="guaII" name="Guarantor II"  placeholder="">  
+                </div>
+       </div>
+        <div class="row"> 
+             <div class ="col-md-4 off-set-8">
+                <label for="amtGua">Amount</label>
+                <input class="form-control" id="amtGua" name="amount" type="number" placeholder="Guaranting Value">  
+            </div>
+        </div>           
+         <button type="submit" class="btn btn-success float right">Update</button> 
+     </form>
+    </div>
+<%} else {%>
+    <h2 class="else text-danger">This Member does not exist</h2> 
+<%}%>
+</div>
+</div>
+</body>
+</html>
+

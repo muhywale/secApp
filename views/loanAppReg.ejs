@@ -1,0 +1,55 @@
+<%- include ('coopH/first.ejs') -%>
+
+<div class = "container-fluid">
+<% if(loanApp.length > 0) { %>   
+  <table class= "table table-hover table-striped">
+   <div class="thead" style="position: fixed;"> 
+     <thead class= "table-dark">
+        <div class="row">
+            <div class="col-9 g-5">
+                <tr>
+                    <td scope="row">ID</td>
+                    <td  scope="col">MEM ID</td>
+                    <td  scope="col">NAME</td>
+                    <td  scope="col">AMOUNT</td>
+                    <td  scope="col">GUARANTOR I</td>
+                    <td  scope="col">GUARANTOR II</td>
+                </tr>
+            </div>
+            <div class="col-3 offset-9 wd">
+                    <h4 style="justify-content: center;" class="text-center" >ACTION</h4>
+            </div>
+        </div>
+            </thead>
+    </div>
+         <tbody>
+         <div class="container">
+             <%  loanApp.forEach((loan, index) => { %>
+              <tr class="data">
+                <th scope="row" style="color: white;"> <%=  loan._id %> </th>
+                <td> <%= loan.Reg_No %></td>
+                <td> N<%= loan.Name %></td>
+                <td> N<%= loan.Amount_Req %></td>
+                <td> N<%= loan.Guarantor_1%></td>
+                <td> N<%= loan.Guarantor_11 %></td>
+                <td>
+                    <a href="/user" class="btn btn-info btn-sm">Details</a> 
+                </td>
+                   <td>
+                    <a href="/deny/<%=loan._id%>" class="btn btn-danger btn-sm">Decline</a> 
+                   <td>                           
+                   <a href="/grant/<%=loan._id%>" class="btn btn-success btn-sm">Grant</a>  
+                   </td>  
+            </tr>
+              </div>
+                <% }) %>
+            </tbody>
+        </table>
+    <%  } else { %>
+        <p class= "text-primary">Please add member(s) to the page</p>
+    <% } %>
+ </div>
+</div>
+</body>
+</html>
+

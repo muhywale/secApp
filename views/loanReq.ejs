@@ -1,0 +1,44 @@
+<%- include ('coopH/first.ejs') -%>
+ <% if(membersPage) { %>
+<div class="container-fluid lRq">
+    <p class="text-center reqH" style="color: white;"><b>Loan Application Form</b></p>
+    <div class="form-group"  >
+        <form action="" method="POST" enctype="application/x-www-form-urlencoded">
+            <div>
+                <label for="Name">ID</label>
+                <input class="form-control" id="Name" name="id" value="<%= membersPage.id %>" disabled>
+                <label for="Name">Name</label>
+                <input class="form-control" id="Name" name="nm"  value="<%= membersPage.name %>" disabled>
+            </div>
+            <div>
+                <label for="lBal">Loan Bal</label>
+                <input class="form-control" id="lBal" name="loanBal" value="<%= membersPage.loanBalance %>" disabled>
+                <label for="sav">Savings</label>
+                <input class="form-control" id="sav" name="Savings" value="<%= membersPage.Savings %>" disabled>
+            </div>
+            <div>
+                <label for="amt">Amount:</label>
+                <input class="form-control"  type="number" id="amt" name="amt">
+            </div>
+            
+            <div>
+                <label for="gua1">Gurantor I ID:</label>
+                <input class="form-control" type="number" id="gua1" name="gua1">
+                <label for="gua2">GurantorII ID:</label>
+                <input class="form-control" type="number" id="Name" name="gua2">
+            </div>
+                -----------------------------------------------------------
+                -----------------------------------------------------------
+            <div>
+                <label for="appr">Amount Approved:</label>
+                <input class="form-contorl" id="appr" name="appr" disabled> 
+            </div>
+            <button type="submit" class="btn btn-info">Request</button>
+        </form>
+        
+    </div>
+</div>
+    <%}%>
+</div>
+</body>
+</html>

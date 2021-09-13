@@ -1,0 +1,58 @@
+<%- include ('coopH/first.ejs') -%>
+<div class = "container-fluid">
+<% if(appReg.length > 0) { %>
+ <div class="row">
+     <div class="col-md-6">
+        <table class= "table table-hover table-striped">
+            <div class="thead"> 
+                NEXT OF KIN I
+             <thead class= "table-dark">
+                <tr>
+                    <td  scope="col">NAME</td>
+                    <td  scope="col">PHONE NO</td>
+                    <td  scope="col">ADDRESS</td>
+                </tr>
+            </thead>
+            <tbody>
+            <% appReg.forEach((mem, index) => { %>
+                <tr class="data">
+                    <td> <%= mem.nof1.name %></td>
+                    <td> <%= mem.nof1.cellNo %></td>
+                    <td> <%= mem.nof1.addr%></td>
+                </tr>
+            </tbody>
+        <% }) %>
+       </table>
+     </div>
+     <div class="col-md-6">
+        NEXT OF KIN II
+        <table class= "table table-hover table-striped">
+            <div class="thead"> 
+             <thead class= "table-dark">
+                <tr>
+                    <td  scope="col">NAME</td>
+                    <td  scope="col">PHONE NO</td>
+                    <td  scope="col">ADDRESS</td>
+                </tr>
+            </thead>
+            <tbody>
+            <% appReg.forEach((mem, index) => { %>
+                <tr class="data">
+                    <td> <%= mem.nof2.name %></td>
+                    <td> <%= mem.nof2.cellNo %></td>
+                    <td> <%= mem.nof2.addr%></td>
+                </tr>
+            </tbody>
+            <% }) %>
+       </table>
+    </div>
+ </div>
+           
+ <%}       else { %>
+        <p class= "text-primary">Please add member(s) to the page</p>
+        <% } %>
+
+ </div>
+</div>
+</body>
+</html>

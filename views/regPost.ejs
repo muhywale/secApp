@@ -1,0 +1,87 @@
+<%- include ('coopH/first.ejs') -%>
+<div class="container-fluid SignUp2">
+<h2 class=text-center>Sign Up</h2>
+ 
+<%- include ('coopH/msg.ejs') -%>
+<form action="" enctype="multipart/form-data" method="POST">
+    <div class="form-group">
+        <div class="mb-3">
+                <label for="tt">Title</label>
+                <input type="text" name="tt" class="form-control" placeholder="MR/MRS"  value= "<%= typeof tt !== 'undefined' ? tt : '' %>" id="tt" sr-only >
+         </div>
+            <div class="">
+                <label for="fnm">First Name</label>
+                <input type="text" name="fnm" class="form-control" placeholder="First Name" value= "<%= typeof fnm !== 'undefined' ? fnm : '' %>" id="fnm" sr-only >
+            </div>
+            <div class="">         
+                <label for="lnm">Last Name</label>
+                <input type="text" name="lnm" class="form-control" placeholder="Last Name" value= "<%= typeof lnm !== 'undefined' ? lnm : '' %>" id="lnm" sr-only >
+            </div>
+        
+            <div class="">
+                <label for="add">Address</label>
+                <input type="text"  name = "add" class="form-control" placeholder="Address" value= "<%= typeof add !== 'undefined' ? add : '' %>" id="add" sr-only >
+            </div>
+            <div class="">
+                <label for="Pnb">Phone Number</label>
+                <input type="number" name="pnb" class="form-control" placeholder="Phone Number" value= "<%= typeof pnb !== 'undefined' ? pnb : '' %>" id="pnb" sr-only >
+            </div>
+            <div class="">
+                <label for="em">Email</label>
+                <input type="email" name ="em" class="form-control" placeholder="Email" id="em" sr-only >
+            </div>
+                ------------------------------------------------------------------------
+                ------------------------------------------------------------------------
+            <strong style="margin-bottom: 2px;">Next of Kin I</strong>
+            <div class="">
+                <label for="nm">Name</label>
+                <input  name ="nm"class="form-control" placeholder="Name" id="nm" sr-only >
+            </div>
+            <div class="">
+                <label for="adr">Address</label>
+                <input name="adr" class="form-control" placeholder="Address" id="adr" sr-only >
+            </div>
+            <div class="">
+                <label for="phn">Phone Number</label>
+                <input type="number" name="phn" class="form-control" placeholder="Phone Number" id="phn" sr-only >
+            </div>
+            ------------------------------------------------------------------------
+            ------------------------------------------------------------------------
+            <div class="mt-10">
+            <strong>Next of Kin II</strong>
+                <div class="">
+                    <label for="nm2">Name</label>
+                    <input  name ="nm2"class="form-control" placeholder="Name" id="nm2" sr-only >
+                </div>
+                <div class="">
+                    <label for="adr2">Address</label>
+                    <input name="adr2" class="form-control" placeholder="Address" id="adr2" sr-only >
+                </div>
+                <div class="">
+                    <label for="phn2">Phone Number</label>
+                    <input type="number" name="phn2" class="form-control" placeholder="Phone Number" id="phn2" sr-only >
+                </div> 
+                <div class="">
+                    <label for="ref1">Referrer I</label>
+                    <input type="text" name="ref1" class="form-control" placeholder="Referrer I" id="ref1" sr-only >
+                </div>
+                <div class="">
+                    <label for="ref2">Referrer II</label>
+                    <input type="text" name="ref2" class="form-control" placeholder="Referrer II" id="ref2" sr-only >
+                </div> 
+                <div class="">
+                    <label for="password">Password</label>
+                    <input type="password" name="pass1" class="form-control" placeholder="Create Password" id="password" sr-only >
+                </div>  
+                 <div class="">
+                    <label for="password2">Confirm Password</label>
+                    <input type="password" name="pass2" class="form-control" placeholder="Confirm Password" id="password2" sr-only >
+                </div>
+            </div>
+            </div class="mt-5">
+                <button type="submit" class="btn btn-success">SignUp</button>
+            </form>
+        </div>
+</div>
+</body>
+</html>
