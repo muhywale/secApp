@@ -105,7 +105,22 @@ module.exports = {
             req.flash('error_msg','Please log in to view your account')
            // console.log(req.session.passport.user)
         },    
-        
+        more: (req, res,) => {
+            let memid = req.params._id;
+            newModel.findById( {_id:memid}, (err, user)=>{
+            if(err){
+            console.log(err, "something went wrong!!")
+             }
+            res.render('memData.ejs', {
+             title: `Ire Akari Member's Page`,
+             membersPage: user,
+            }
+            )
+            req.flash('error_msg','Please log in to view your account')
+           // console.log(req.session.passport.user)
+            })
+        },
+
         home:(req,res) =>{
             res.render('homepg.ejs',{
             title: 'Home'                 

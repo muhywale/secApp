@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const exp = require('express');
 
 //const userModel = require('./routes/usermodel');
-const {editMemPg, update , updatePage, members, home, signup, welc, memAppp, memRegSta, nominees,reject, accept,loanApp,rmmem, user, authen, details, loanAppReg, loanStand} = require('./routes/Routes');
+const {editMemPg, update , updatePage, members, home, signup, welc, memAppp, memRegSta, nominees,reject, accept,loanApp,rmmem, user, authen, details, loanAppReg, loanStand, more} = require('./routes/Routes');
 const newModel = require('./routes/modelUser');
 const body = require('body-parser')
 const fileup = require('express-fileupload');
@@ -109,16 +109,16 @@ secApp.get('/login', (req,res)=>{
     res.send('you can\'t view the content')
   }
 
-  secApp.get("/user/:_id",user);
+  secApp.get("/user", user);
   secApp.get("/members",admin, members);
    secApp.get("/remove/:_id",admin, rmmem);
    
-   //secApp.get('/details',editMemPg); 
+  secApp.get('/details/:_id',admin,more); 
   secApp.get('/update/:_id',admin, updatePage);
    secApp.post('/update/:_id', admin,update);  
-   secApp.get('/app', memRegSta);
+   secApp.get('/app', admin,memRegSta);
    secApp.get('/app/view/:_id', admin,nominees);
-   secApp.get('/member/:_id',user);
+   //secApp.get('/member/:_id',user);
   
    //membership status
    secApp.get('/app/accept/:_id',admin, accept);
