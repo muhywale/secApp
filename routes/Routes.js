@@ -395,6 +395,7 @@ module.exports = {
 
             const {lamt,gua1, gua2, id, nm}  = req.body
 
+            console.log(req.body);
             new loanM({
 
                 Amount_Req : lamt,

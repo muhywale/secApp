@@ -3,7 +3,7 @@
 <div class="container-fluid lRq">
     <p class="text-center" style="color: white; align-items: center; justify-content: center;"><b>Loan Application Form</b></p>
     <div class="form-group"  >
-        <form action="" method="POST" enctype="application/x-www-form-urlencoded">
+        <form action="" method="POST" enctype="multipart/form-data">
             <div>
                 <label for="Name">ID</label>
                 <input class="form-control" id="Name" name="id" value="<%= membersPage.id %>" disabled>
@@ -18,14 +18,14 @@
             </div>
             <div>
                 <label for="amt">Amount:</label>
-                <input class="form-control"  type="number" id="amt" name="amt">
+                <input class="form-control"  type="number" id="amt" name="lamt">
             </div>
             
             <div>
                 <label for="gua1">Gurantor I ID:</label>
                 <input class="form-control" type="number" id="gua1" name="gua1">
                 <label for="gua2">GurantorII ID:</label>
-                <input class="form-control" type="number" id="Name" name="gua2">
+                <input class="form-control" type="number" id="gua2" name="gua2">
             </div>
                 -----------------------------------------------------------
                 -----------------------------------------------------------
@@ -33,7 +33,7 @@
                 <label for="appr">Amount Approved:</label>
                 <input class="form-contorl" id="appr" name="appr" disabled> 
             </div>
-            <button type="submit" class="btn btn-info">Request</button>
+            <button type="submit" class="btn btn-success">Request</button>
         </form>
         
     </div>

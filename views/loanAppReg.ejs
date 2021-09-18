@@ -28,12 +28,12 @@
               <tr class="data">
                 <th scope="row" style="color: white;"> <%=  loan._id %> </th>
                 <td> <%= loan.Reg_No %></td>
-                <td> N<%= loan.Name %></td>
-                <td> N<%= loan.Amount_Req %></td>
-                <td> N<%= loan.Guarantor_1%></td>
-                <td> N<%= loan.Guarantor_11 %></td>
+                <td> <%= loan.Name %></td>
+                <td> <%= loan.Amount_Req %></td>
+                <td> <%= loan.Guarantor_1%></td>
+                <td> <%= loan.Guarantor_11 %></td>
                 <td>
-                    <a href="/user" class="btn btn-info btn-sm">Details</a> 
+                    <a href="/check" class="btn btn-info btn-sm">Details</a> 
                 </td>
                    <td>
                     <a href="/deny/<%=loan._id%>" class="btn btn-danger btn-sm">Decline</a> 
