@@ -110,18 +110,18 @@ secApp.get('/login', (req,res)=>{
   }
 
   secApp.get("/user", user);
-  secApp.get("/members",admin, members);
+  secApp.get("/members",admin, members); 
    secApp.get("/remove/:_id",admin, rmmem);
    
   secApp.get('/details/:_id',admin,more); 
   secApp.get('/update/:_id',admin, updatePage);
    secApp.post('/update/:_id', admin,update);  
-   secApp.get('/app', admin,memRegSta);
+   secApp.get('/app',admin, memRegSta); 
    secApp.get('/app/view/:_id', admin,nominees);
    //secApp.get('/member/:_id',user);
   
    //membership status
-   secApp.get('/app/accept/:_id',admin, accept);
+   secApp.get('/app/accept/:_id', admin, accept);
    secApp.get('/app/reject/:_id', admin, reject);
    secApp.get('/loanApp',admin,loanStand);
    secApp.post('/loanReq',loanAppReg);
@@ -185,7 +185,11 @@ secApp.get('/err',(req,res)=>{
   })
 })
 
- 
+
+/*newModel.findOneAndUpdate({_id:478},{role:'admin'},(err,nw)=>{
+  console.log(nw);
+}) //
+
  
 
 

@@ -373,9 +373,14 @@ module.exports = {
                         membersPage: req.user
                     })
                      }),
+        check:(req,res)=>{
+
+
+        },
+
         loanGrant: (req,res)=>{
                     
-
+            //NEXT CODE GOES HERE
         },
         loanStand:(req,res)=>{
             loanM.find({},(err,scr)=>{
@@ -393,13 +398,22 @@ module.exports = {
 
         loanAppReg:(req,res)=>{
 
-            const {lamt,gua1, gua2, id, nm}  = req.body
+            const {lamt,gua1, gua2, nm, id}  = req.body
 
-            console.log(req.body);
-            new loanM({
+
+           /* let vaildGua = newModel.find({id:gua1},(non,gua)=>{
+                if(f){
+
+                    //NEXT CODE GOES HERE
+
+                }
+            }) */
+            
+                console.log(req.body);
+                new loanM({
 
                 Amount_Req : lamt,
-                Guarantor_1 : gua1,
+                Guarantor_1 : gua1, 
                 Guarantor_2 : gua2,
                 Reg_No : id,
                 Name : nm
