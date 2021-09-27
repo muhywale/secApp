@@ -1,21 +1,21 @@
 <%- include ('coopH/first.ejs') -%>
- <% if(membersPage) { %>
 <div class="container-fluid lRq">
     <p class="text-center" style="color: white; align-items: center; justify-content: center;"><b>Loan Application Form</b></p>
     <div class="form-group"  >
+        <%- include ('coopH/msg.ejs') -%>
         <form action="" method="POST" enctype="multipart/form-data">
             <div class="loanF text-white" >
                 <div>
                     <label for="id">ID</label>
-                    <input class="form-control" id="id" name="id" value="<%= membersPage.id %>">
+                    <input class="form-control" id="id" name="id" >
                     <label for="Name">Name</label>
-                    <input class="form-control" id="Name" name="nm"  value="<%= membersPage.name %>" >
+                    <input class="form-control" id="Name" name="nm" >
                  </div>
                  <div>
                     <label for="lBal">Loan Bal</label>
-                    <input class="form-control" id="lBal" name="lBal" value="<%= membersPage.loanBalance %>">
+                    <input class="form-control" id="lBal" name="lBal">
                     <label for="sav">Savings</label>
-                    <input class="form-control" id="sav" name="Savings" value="<%= membersPage.Savings %>" >
+                    <input class="form-control" id="sav" name="Savings"  >
                 </div>
                 <div>
                     <label for="amt">Amount:</label>
@@ -23,10 +23,8 @@
                  </div>
             
                 <div>
-                    <%- include ('coopH/msg.ejs') -%>
                     <label for="gua1">Gurantor I ID:</label>
                     <input class="form-control" type="number" id="gua1" name="gua1">
-                    <%- include ('coopH/msg.ejs') -%>
                     <label for="gua2">GurantorII ID:</label>
                     <input class="form-control" type="number" id="gua2" name="gua2">
                 </div>
@@ -41,7 +39,6 @@
         </form>
     </div>   
 </div>
-    <%}%>
 </div>
 </body>
 </html>

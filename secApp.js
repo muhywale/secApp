@@ -163,21 +163,7 @@ secApp.get('/logout', function(req, res){
  req.flash('success_msg','You are now logged out')
  res.redirect('/login');
 });
- 
 
-// ADMIN ROUTES
-
-//ROLE!!!!
-/*var em = "asa@gmail.com"
-newModel.findOneAndUpdate({email:em},{role:'admin'}, {new:true},(err,user)=>{
-  if(err) throw err
-  console.log(user.role)
-}) */
-
-/*newModel.findOne({email:em},(err,res)=>{
-  if(err) throw err
-  console.log(res)
-}); */
 
 secApp.get('/err',(req,res)=>{
   res.render('err.ejs',{
@@ -200,53 +186,6 @@ secApp.get('/err',(req,res)=>{
 
    
 
-/*let granted = () => { 
-  secApp.post('/', (req,res)=>{
-  
-  global.idi= req.body.memid
-
-      
-  newModel.findById( {_id:idi}, (err,fin)=>{
-      if(err){
-     //res.redirect('/err'); 
-     res.redirect('/err')
-  }else{
-      res.redirect('/auth/facebook')
-   } 
-  })
- })
-}
- 
-  granted();
- let sec = () => {
-    if(granted)
-  secApp.get('/details/', (req,res)=>{
-    if(!req.user){
-      return res.redirect(303, '/');
-    }
-    let memid = idi
-  
-    newModel.findOne( {_id:memid}, (err,fin)=>{
-     if(err){
-         console.log(err, "something went wrong!!")
-     }
-     console.log(req.user.email);
-    res.render('memData.ejs', {
-    title: `Ire Akari Member's Page (${memid})`,
-     membersPage: fin
-    })
-  })
- })
-}
-
- sec();
- */
-
-
- // new members
-
-
-  //dest
 
 /*var MongoSessionStore = require('session-mongoose')(require('connect'));
 var sessionStore = new MongoSessionStore({ url:
@@ -266,3 +205,6 @@ secApp.listen(port, () => {
 }) */
 //***HUGE ROUTES */
  //secApp.get("/",welc)
+ 
+ /*loanM.deleteMany((err,res)=>{
+ }) */
