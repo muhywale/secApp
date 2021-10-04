@@ -4,6 +4,7 @@
     <p class="text-center" style="color: white; align-items: center; justify-content: center;"><b>Loan Application Form</b></p>
     <div class="form-group"  >
         <form action="" method="POST" enctype="multipart/form-data">
+            <%- include ('coopH/msg.ejs') -%>
             <div class="loanF text-white" >
                 <div>
                     <label for="id">ID</label>
@@ -22,11 +23,9 @@
                     <input class="form-control"  type="number" id="amt" name="lamt">
                  </div>
             
-                <div>
-                    <%- include ('coopH/msg.ejs') -%>
+                <div>     
                     <label for="gua1">Gurantor I ID:</label>
                     <input class="form-control" type="number" id="gua1" name="gua1">
-                    <%- include ('coopH/msg.ejs') -%>
                     <label for="gua2">GurantorII ID:</label>
                     <input class="form-control" type="number" id="gua2" name="gua2">
                 </div>

@@ -401,37 +401,24 @@ module.exports = {
             const {lamt,gua1, gua2, nm, id,lBal, Savings}  = req.body
            // console.log(req.body);
             var loanError = [];
+            var idArray =[gua1,gua2]
 
-            newModel.findOne({_id:gua1},(err,gua)=>{
-                if(err){
-                 console.log(err)
-                } 
-                if(!gua){
-                    loanError.push({msg: `No member with the provided id: ${gua1}`})
-                    console.log(loanError);
-                }
-                if(gua){
-             newModel.findOne({_id:gua2}, (err,guaf)=>{
-                if(err){
-                    console.log(err)
-                } 
-               if(!guaf){
-                 loanError.push({msg: `No member with the provided id: ${gua2}`})
-                 console.log(loanError);
-             }
-            })
-         } 
-                 
-              if(loanError.length > 0){
-            newModel.findOne({id:id},(err,user)=>{
-             if(err){
-                        console.log(err)
-                    }
-                    console.log(user);
-              
-                      res.render('loanReq.ejs',{
+          
+   /*     let check = await newModel.find({'_id':{$in:idArray}},(err,user)=>{
+            if(err){
+                console.log(`Something wrong thus:${err}`)
+            }
+            if(user.gua1){
+
+            }
+        }) */
+
+          
+
+               if(firstCheck() === null || secCheck() === null ){
+                loanError.push({msg: `No member with the provided id: ${gua1}`})  
+                      res.render('loanReqPost.ejs',{
                           title : 'Loan Application',
-                          membersPage: user,
                           loanError,
                           lamt,
                           gua1,
@@ -440,29 +427,25 @@ module.exports = {
                           id,
                           lBal,
                           Savings
-                      
+                       })
+                      }
 
-
-                        //  const {lamt,gua1, gua2, nm, id}
-
-                      })
-                })
-            }else{
-                    new loanM({
-    
-                    Amount_Req : lamt,
-                    Guarantor_1 : gua1, 
-                    Guarantor_2 : gua2,
-                    Reg_No : id,
-                    Name : nm
-                }).save()
-                  //  req.send('Your Application has been submitted!')
-                   req.flash('success_msg','Your Loan Application has been submitted!');
-               //    req.flash('success_msg','Thanks your application is been submitted!!')
-                   res.redirect('/login') 
-                  }
-               // req.redirect('/user')      
-        })
+                    if(firstCheck() !== null || secCheck() !== null ){{
+                        new loanM({
+                        Amount_Req : lamt,
+                        Guarantor_1 : gua1, 
+                        Guarantor_2 : gua2,
+                        Reg_No : id,
+                        Name : nm
+                    }).save()
+                      //  req.send('Your Application has been submitted!')
+                       req.flash('success_msg','Your Loan Application has been submitted!');
+                   //    req.flash('success_msg','Thanks your application is been submitted!!')
+                       res.redirect('/login') 
+                    }
+                    
+                }               // req.redirect('/user')   
+        }
+        
     }
-}
     

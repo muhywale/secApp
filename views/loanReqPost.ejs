@@ -2,31 +2,31 @@
 <div class="container-fluid lRq">
     <p class="text-center" style="color: white; align-items: center; justify-content: center;"><b>Loan Application Form</b></p>
     <div class="form-group"  >
-        <%- include ('coopH/msg.ejs') -%>
         <form action="" method="POST" enctype="multipart/form-data">
+            <%- include ('coopH/msg.ejs') -%>
             <div class="loanF text-white" >
                 <div>
                     <label for="id">ID</label>
-                    <input class="form-control" id="id" name="id" >
+                    <input class="form-control" id="id" name="id" value="<%= typeof id !== 'undefined' ? id :'' %>">
                     <label for="Name">Name</label>
-                    <input class="form-control" id="Name" name="nm" >
+                    <input class="form-control" id="Name" name="nm"  value="<%= typeof nm !== 'undefined' ? nm :'' %>" >
                  </div>
                  <div>
                     <label for="lBal">Loan Bal</label>
-                    <input class="form-control" id="lBal" name="lBal">
+                    <input class="form-control" id="lBal" name="lBal" value="<%= typeof lBal !== 'undefined' ? lBal :'' %>">
                     <label for="sav">Savings</label>
-                    <input class="form-control" id="sav" name="Savings"  >
+                    <input class="form-control" id="sav" name="Savings" value="<%= typeof Savings !== 'undefined' ? Savings :'' %>" >
                 </div>
                 <div>
                     <label for="amt">Amount:</label>
-                    <input class="form-control"  type="number" id="amt" name="lamt">
+                    <input class="form-control"  type="number" id="amt" name="lamt" value="<%= typeof lamt !== 'undefined' ? lamt :'' %>">
                  </div>
             
                 <div>
                     <label for="gua1">Gurantor I ID:</label>
-                    <input class="form-control" type="number" id="gua1" name="gua1">
+                    <input class="form-control" type="number" id="gua1" name="gua1" value="<%= typeof gua1 !== 'undefined' ? gua1 :'' %>">
                     <label for="gua2">GurantorII ID:</label>
-                    <input class="form-control" type="number" id="gua2" name="gua2">
+                    <input class="form-control" type="number" id="gua2" name="gua2" value="<%= typeof gua2 !== 'undefined' ? gua2 :'' %>">
                 </div>
                 -----------------------------------------------------------
                 -----------------------------------------------------------
