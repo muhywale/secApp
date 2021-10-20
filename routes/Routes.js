@@ -473,13 +473,18 @@ module.exports = {
             //** the two users */
             if(user.length == 2 && gua1 !== gua2) {
 
+                var allowed = user[0].netAsset + user[1].netAsset >= lamt/2;
+
+
+                console.log(allowed);
+                 
                 newModel.findById({_id:id}, (err,user)=> {
 
                     if(err){
                         console.log(`something went wrong thus: ${err}`)
                     }
                   
-                    if(user.loanBalance == 0 || null) {  
+                    if((user.loanBalance == 0 || null) && allowed == true) {  
                         new loanM({
                             Amount_Req : lamt,
                             Guarantor_1 : gua1, 
@@ -491,6 +496,23 @@ module.exports = {
                            req.flash('success_msg','Your Loan Application has been submitted!');
                        //    req.flash('success_msg','Thanks your application is been submitted!!')
                            res.redirect('/login') 
+                    }
+
+                    if( (user.loanBalance == 0 || null) && allowed == false){
+                        loanError.push({msg:'OHHH\! Look out for another guarantor(s)'})
+                      
+                        res.render('loanReqPost.ejs',{
+                            title : 'Loan Application',
+                            loanError,
+                            lamt,
+                            gua1,
+                            gua2,
+                            nm,
+                            id,
+                            lBal,
+                            Savings
+                         })
+                    
                     }
                      
                         if(user.loanBalance > 0){
@@ -506,14 +528,10 @@ module.exports = {
                                 lBal,
                                 Savings
                              })
-                        }
-                        })
-                        
-                    }
-            
-                })            
-         
+                            }    
+                        })  
+            }
+        })
         }
-
     }
     
