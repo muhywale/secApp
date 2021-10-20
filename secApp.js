@@ -206,8 +206,8 @@ secApp.listen(port, () => {
 //***HUGE ROUTES */
  //secApp.get("/",welc)
  
- loanM.deleteMany((err,res)=>{
- }) 
+   loanM.deleteMany((err,res)=>{
+ })  
  
  // console.log(req.body);
   

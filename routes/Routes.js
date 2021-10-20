@@ -488,7 +488,7 @@ module.exports = {
                         new loanM({
                             Amount_Req : lamt,
                             Guarantor_1 : gua1, 
-                            Guarantor_2 : gua2,
+                            Guarantor_11 : gua2,
                             Reg_No : id,
                             Name : nm
                         }).save()
