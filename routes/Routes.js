@@ -65,7 +65,9 @@ module.exports = {
                     let   nBf= user.buildFund + bf;
                     let   nLB = user.loanBalance - lr;
                     let   nLr = user.loanRepaid + lr ;
-                    newModel.findByIdAndUpdate(memid, {Shares:nShr, Savings:nSav, loanBalance:nLB,loanRepaid:nLr, buildFund:nBf}, {new:true}, (err, upt)=>{
+                    let nAss = nSav -nLB - user.totalLoanGuaranted
+                    //let nwnetAsset = nSav - nLB- user.totalLoanGuaranted;
+                    newModel.findByIdAndUpdate(memid, {Shares:nShr, Savings:nSav, loanBalance:nLB,loanRepaid:nLr, buildFund:nBf, netAsset:nAss }, {new:true}, (err, upt)=>{
                     if(err){
                        return res.status(400).send("Something went wrong iiiii")
                     }
@@ -341,10 +343,12 @@ module.exports = {
                             buildFund : '',
                             loanBalance : '',
                             commBalance : '',
+                            totalLoanGuaranted: '',
+                            loanGuaranted:[],
                             insDep : '',
                             hDuty : '',
                             loanRepaid : '',
-                            netAsset : '',
+                            netAsset : ''
                             }).save().then((err,del)=>{
                                 appModel.findByIdAndDelete({_id:id},(err, ans)=>{
                                                 if(err){
@@ -402,50 +406,114 @@ module.exports = {
            // console.log(req.body);
             var loanError = [];
             var idArray =[gua1,gua2]
+            
+          //  var idArray = ['961','47']
 
+        newModel.find({'_id':{$in:idArray}},(err,user)=>{
+           
+            /****possible output****
+            1. Null user
+            2. just one user
+            3. the two users */
           
-   /*     let check = await newModel.find({'_id':{$in:idArray}},(err,user)=>{
-            if(err){
-                console.log(`Something wrong thus:${err}`)
-            }
-            if(user.gua1){
-
-            }
-        }) */
-
-          
-
-               if(firstCheck() === null || secCheck() === null ){
-                loanError.push({msg: `No member with the provided id: ${gua1}`})  
-                      res.render('loanReqPost.ejs',{
-                          title : 'Loan Application',
-                          loanError,
-                          lamt,
-                          gua1,
-                          gua2,
-                          nm,
-                          id,
-                          lBal,
-                          Savings
-                       })
-                      }
-
-                    if(firstCheck() !== null || secCheck() !== null ){{
-                        new loanM({
-                        Amount_Req : lamt,
-                        Guarantor_1 : gua1, 
-                        Guarantor_2 : gua2,
-                        Reg_No : id,
-                        Name : nm
-                    }).save()
-                      //  req.send('Your Application has been submitted!')
-                       req.flash('success_msg','Your Loan Application has been submitted!');
-                   //    req.flash('success_msg','Thanks your application is been submitted!!')
-                       res.redirect('/login') 
-                    }
-                    
-                }               // req.redirect('/user')   
+         if(err){
+        console.log(`Something wrong thus: ${err}`)
         }
+           // console.log(user[0].id)  
         
+            //**Null User */
+            
+            if(user.length == 0){
+              loanError.push({msg:`No user with the provided ids: ${idArray[0]} and ${idArray[1]}`})
+            //  console.log(loanErrorMsg)
+              res.render('loanReqPost.ejs',{
+                title : 'Loan Application',
+                loanError,
+                lamt,
+                gua1,
+                gua2,
+                nm,
+                id,
+                lBal,
+                Savings
+             })
+            }
+
+       
+            
+            //**One user */
+            if(user.length == 1){   
+              //console.log(user[0].id)
+              for(key in user){
+                var res1 = `${user[key]._id == idArray[0] }`
+                var res2 = `${user[key]._id == idArray[1] }`
+        
+                if(res1 == 'false'){
+                  loanError.push({msg:`No user with the provided id : ${idArray[0]}`})
+                }
+        
+                if(res2 == 'false'){
+                  loanError.push({msg:`No user with the provided id : ${idArray[1]}`})
+                 }
+              }
+            //  console.log(loanErrorMsg)
+              res.render('loanReqPost.ejs',{
+                title : 'Loan Application',
+                loanError,
+                lamt,
+                gua1,
+                gua2,
+                nm,
+                id,
+                lBal,
+                Savings
+             })
+        }
+
+            //** the two users */
+            if(user.length == 2 && gua1 !== gua2) {
+
+                newModel.findById({_id:id}, (err,user)=> {
+
+                    if(err){
+                        console.log(`something went wrong thus: ${err}`)
+                    }
+                  
+                    if(user.loanBalance == 0 || null) {  
+                        new loanM({
+                            Amount_Req : lamt,
+                            Guarantor_1 : gua1, 
+                            Guarantor_2 : gua2,
+                            Reg_No : id,
+                            Name : nm
+                        }).save()
+                          //  req.send('Your Application has been submitted!')
+                           req.flash('success_msg','Your Loan Application has been submitted!');
+                       //    req.flash('success_msg','Thanks your application is been submitted!!')
+                           res.redirect('/login') 
+                    }
+                     
+                        if(user.loanBalance > 0){
+                            loanError.push({msg:'You still have an unsettled loan'})
+                            res.render('loanReqPost.ejs',{
+                                title : 'Loan Application',
+                                loanError,
+                                lamt,
+                                gua1,
+                                gua2,
+                                nm,
+                                id,
+                                lBal,
+                                Savings
+                             })
+                        }
+                        })
+                        
+                    }
+            
+                })            
+         
+        }
+
     }
     

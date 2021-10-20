@@ -206,35 +206,21 @@ secApp.listen(port, () => {
 //***HUGE ROUTES */
  //secApp.get("/",welc)
  
- /*loanM.deleteMany((err,res)=>{
- }) */
- var idArray = ['961','47']
- var errorArray =[]
+ loanM.deleteMany((err,res)=>{
+ }) 
+ 
+ // console.log(req.body);
+  
 
-  newModel.find({'_id':{$in:idArray}},(err,user)=>{
-  if(err){
-      console.log(`Something wrong thus: ${err}`)
-  }
 
-    if(user[0]){
-   // console.log(user[0])
-    console.log(user[0])
-    //console.log(user.length)
-    }else{
-      errorArray.push({errMsg:`No member with the provided id: ${idArray[0]}`})
-    }
 
-    if(user[1]){
-      // console.log(user[0])
-       console.log(user[1])
-       //console.log(user.length)
-       }else{
-        errorArray.push({errMsg:`No member with the provided id: ${idArray[1]}`})
-      }
 
-      console.log(errorArray)
-   
 
-})
 
-//check();
+
+
+
+
+
+
+  

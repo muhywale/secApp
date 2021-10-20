@@ -13,12 +13,9 @@ const mg = require('mongoose')
       insDep : Number,
       hDuty : Number,
       loanRepaid : Number,
-      loanGuaranted:{
-        id: String,
-        Amount: Number,
-        Balance: Number
-      },
-      netAsset : Number,
+      totalLoanGuaranted:Number,
+      LoanGuaranted: Array,
+      netAsset :Number,
       otherinfo :   {
         phoneNumber : Number,
         address : String,
@@ -50,7 +47,7 @@ const mg = require('mongoose')
     type: String,
     require: true
     },
-      created: Date,
+      joined: Date,
       pass1: {
         type : String,
         require: true

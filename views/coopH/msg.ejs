@@ -2,16 +2,17 @@
   <%  error.forEach((error)=> { %>
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
   <%= error.msg %>
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
     <% }); %>
     <% } %>
+
 
     <% if(typeof loanError != 'undefined') { %> 
       <%  loanError.forEach((e)=> { %>
     <div class="alert alert-warning alert-dismissible fade show" style="border-radius: 2.5pc; border-style:solid; border-color:tomato ; height: fit-content; padding: auto;" role="alert">
       <%= e.msg %>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
         <% }); %>
         <% } %>   
@@ -19,14 +20,14 @@
     <% if(success_msg != '') { %> 
       <div class="alert alert-success alert-dismissible fade show"  role="alert">
         <%= success_msg %>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
           <% } %>
 
      <% if(error_msg != '') { %> 
       <div class="alert alert-warning alert-dismissible fade show" role="alert">
       <%= error_msg %>
-     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
        </div>
         <% } %>
 
@@ -34,7 +35,7 @@
         <% if(error != '') { %> 
           <div class="alert alert-warning alert-dismissible fade show" role="alert">
           <%= error %>
-         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
            </div>
             <% } %>
 
