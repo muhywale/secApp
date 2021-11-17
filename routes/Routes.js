@@ -530,8 +530,16 @@ module.exports = {
                              })
                             }    
                         })  
+                    }
+            })
+        },
+
+        consent:(req,res) => {
+            res.render('consent.ejs',{
+            title:'GUARANTORS APPROVAL'
             }
-        })
+            )
         }
+
     }
     

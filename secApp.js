@@ -5,9 +5,10 @@ var passport = require('passport');
 const { find } = require('async');
 const mongoose = require('mongoose');
 const exp = require('express');
+const mail = require('./mail');
 
 //const userModel = require('./routes/usermodel');
-const {editMemPg, update , updatePage, members, home, signup, welc, memAppp, memRegSta, nominees,reject, accept,loanApp,rmmem, user, authen, details, loanAppReg, loanStand, more} = require('./routes/Routes');
+const {editMemPg, update , updatePage, members, home, signup, welc, memAppp, memRegSta, nominees,reject, accept,loanApp,rmmem, user, authen, details, loanAppReg, loanStand, more, consent} = require('./routes/Routes');
 const newModel = require('./routes/modelUser');
 const body = require('body-parser')
 const fileup = require('express-fileupload');
@@ -118,6 +119,7 @@ secApp.get('/login', (req,res)=>{
    secApp.post('/update/:_id', admin,update);  
    secApp.get('/app',admin, memRegSta); 
    secApp.get('/app/view/:_id', admin,nominees);
+   secApp.get('/consent',admin,consent)
    //secApp.get('/member/:_id',user);
   
    //membership status
