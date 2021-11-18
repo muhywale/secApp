@@ -27,10 +27,6 @@ const secApp = exp();
 
  require('./auth')(passport);
 
-
-  
-
-
 switch(secApp.get('env')){
   case 'development':
   mongoose.connect(credentials.mongo.development.connectionString, {useNewUrlParser:true, useUnifiedTopology:true});
@@ -40,11 +36,7 @@ switch(secApp.get('env')){
   break;
   default:
    throw new Error('Unknown execution environment: ' + secApp.get('env'));
-  }
-  
-
-    
-  
+  }  
   //making connection
    console.log(secApp.get('env'));
   
@@ -56,11 +48,6 @@ secApp.set('views engine', 'ejs');
 //secApp.use(body.urlencoded({extended:false})); 
 //secApp.use(body.json());
 secApp.use(fileup());
-
-
-
-//secApp.use(require('cookie-parser')(credentials.cookieSecret)); 
-
 //session
 var sessionStore = 'blablabla'
 secApp.use(require('express-session')
@@ -83,8 +70,6 @@ secApp.use(require('express-session')
   next()
  })
 
- 
-   
  secApp.post('/login',(req,res,next)=>{
   passport.authenticate('local',{
     successRedirect: '/user',
@@ -99,10 +84,8 @@ secApp.get('/login', (req,res)=>{
    title:"Welcome"
   })
 })
-
  
- //***ADMIN ROUTES */
-  
+ //***ADMIN ROUTES */  
  let admin = (req,res,next) =>{
     if(req.user.role === "admin" && req.session.passport.user ){
        return next()
@@ -166,29 +149,15 @@ secApp.get('/logout', function(req, res){
  res.redirect('/login');
 });
 
-
 secApp.get('/err',(req,res)=>{
   res.render('err.ejs',{
     title:"Error Page!!"
   })
 })
 
-
 /*newModel.findOneAndUpdate({_id:478},{role:'admin'},(err,nw)=>{
   console.log(nw);
 }) //
-
- 
-
-
-
-
-
-
-
-   
-
-
 /*var MongoSessionStore = require('session-mongoose')(require('connect'));
 var sessionStore = new MongoSessionStore({ url:
 credentials.mongo.development.connectionString }); */
@@ -212,17 +181,3 @@ secApp.listen(port, () => {
  })  
  
  // console.log(req.body);
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  

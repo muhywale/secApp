@@ -536,7 +536,9 @@ module.exports = {
 
         consent:(req,res) => {
             res.render('consent.ejs',{
-            title:'GUARANTORS APPROVAL'
+            title:'GUARANTORS APPROVAL',
+            user: 'MEMB3R 007',
+            amount: '$1,500,000'
             }
             )
         }
