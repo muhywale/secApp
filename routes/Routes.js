@@ -4,8 +4,12 @@ const appModel = require('./appModel');
 const { update } = require('./modelUser');
 const bcrypt = require('bcryptjs');
 const flash = require('connect-flash');
-const { email } = require('../credential');
+const { email, gMailService } = require('../credential');
 const loanM = require('./loanModel');
+const {} = require('../mailTest');
+const { firstPromise } = require('../mailTest');
+const { mailOptions } = require('../mailTest');
+const { transporter } = require('../mailTest');
 
 
 // **** routes functions****
@@ -382,10 +386,32 @@ module.exports = {
 
         },
 
-        loanGrant: (req,res)=>{
-                    
-            //NEXT CODE GOES HERE
-        },
+        loanGrant: async (req,res)=>{ 
+            loanM.find({},(err,data)=>{
+                if(err){
+                console.log(err)
+            }   
+         let msgBody = async (req,res)=> { 
+
+            try{
+            let f = await firstPromise(data.Amount_Req)
+            let f2 = await mailOptions(data.gua1.email,data.gua2.email,'ayoadeadewale5@gmail.com','GUARANTORSHIP CONSENT','ok', f)
+            
+            transporter.sendMail(f2 , (error, info) =>{
+                if(error){
+                  console.log(err)
+                  //res.send('Something went wrong.. '+ error +'');
+                }else{
+                  res.send(`Message has been succefully sent to: ${f2.to }`);
+                  }
+                  }) 
+         }catch{
+             req.send('something went wrong!!')
+         }
+
+         msgBody();
+         }
+      })},
         loanStand:(req,res)=>{
             loanM.find({},(err,scr)=>{
                 if(err){
@@ -534,14 +560,7 @@ module.exports = {
             })
         },
 
-        consent:(req,res) => {
-            res.render('consent.ejs',{
-            title:'GUARANTORS APPROVAL',
-            user: 'MEMB3R 007',
-            amount: '$1,500,000'
-            }
-            )
-        }
+     
 
     }
     

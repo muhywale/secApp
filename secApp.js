@@ -5,10 +5,10 @@ var passport = require('passport');
 const { find } = require('async');
 const mongoose = require('mongoose');
 const exp = require('express');
-const mail = require('./mail');
+//const mail = require('./mail');
 
 //const userModel = require('./routes/usermodel');
-const {editMemPg, update , updatePage, members, home, signup, welc, memAppp, memRegSta, nominees,reject, accept,loanApp,rmmem, user, authen, details, loanAppReg, loanStand, more, consent} = require('./routes/Routes');
+const {editMemPg, update , updatePage, members, home, signup, welc, memAppp, memRegSta, nominees,reject, accept,loanApp,rmmem, user, authen, details, loanAppReg, loanStand, more, consent, loanGrant} = require('./routes/Routes');
 const newModel = require('./routes/modelUser');
 const body = require('body-parser')
 const fileup = require('express-fileupload');
@@ -19,6 +19,10 @@ const session = require('express-session');
 const { cookie } = require('./credential');
 const { authenticate } = require('./routes/modelUser');
 const loanM = require('./routes/loanModel');
+//const {msgBody} = require('./mail')
+
+
+
 
 //const { update } = require('./routes/modelUser');
 
@@ -94,6 +98,7 @@ secApp.get('/login', (req,res)=>{
   }
 
   secApp.get("/user", user);
+  secApp.get('/notify',loanGrant)  ///***NEW*** */
   secApp.get("/members",admin, members); 
    secApp.get("/remove/:_id",admin, rmmem);
    
@@ -102,7 +107,7 @@ secApp.get('/login', (req,res)=>{
    secApp.post('/update/:_id', admin,update);  
    secApp.get('/app',admin, memRegSta); 
    secApp.get('/app/view/:_id', admin,nominees);
-   secApp.get('/consent',admin,consent)
+   //secApp.get('/consent',admin,consent)
    //secApp.get('/member/:_id',user);
   
    //membership status
@@ -128,7 +133,6 @@ secApp.get('/login', (req,res)=>{
   res.redirect('/login');
 });
    
-  
  //***CUSTOMER'S ROLE */
 
  let customer = (req,res,next) =>{
@@ -177,7 +181,7 @@ secApp.listen(port, () => {
 //***HUGE ROUTES */
  //secApp.get("/",welc)
  
-   loanM.deleteMany((err,res)=>{
- })  
+  /***** loanM.deleteMany((err,res)=>{
+ })  ****/
  
  // console.log(req.body);

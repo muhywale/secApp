@@ -1,0 +1,90 @@
+"use strict";
+const nodemailer = require('nodemailer');
+const cre = require('./credential')
+const exp = require('express')
+//const fs = require('fs')
+const ejs = require('ejs');
+const { reject } = require('./routes/Routes');
+//const { firstPromise } = require('./mail');
+//const { mailOptions } = require('./mail');
+
+
+const mailExp = exp();
+  
+module.exports.transporter = nodemailer.createTransport ({
+    service: 'gmail',
+    auth: {
+      type: 'OAuth2',
+      user: cre.gMailService.user,
+      pass: cre.gMailService.pass,
+      clientId: cre.gMailService.clientId ,
+      clientSecret: cre.gMailService.clientSecret,
+      refreshToken: cre.gMailService.refreshTokem,
+    }, 
+  }); 
+ 
+module.exports.firstPromise = (amount,user) =>{ 
+    return new Promise((resolve,reject) => {
+      ejs.renderFile( __dirname + "/views/consent.ejs",{
+        title: 'EMAIL NOTIFICATION',
+        amount: `${amount}`,
+        user: `${user}`
+       },
+        (err,fin)=>{
+         if(err){
+           reject(`SOMETHING WENT WRONG:${err}`)
+         }else{
+           return resolve(fin)
+         }
+        })
+    })}
+
+
+ 
+  module.exports.mailOptions =(rec1, rec2, sender,sub,t, ht,err) =>{ 
+      return new Promise ((resolve,reject) =>{
+      let option = {
+        from:`"<${sender}>"`,
+        to: `"<${rec1}>, <${rec2}>"`,
+        subject: `"${sub}"`,
+        text: `"${t}"`,
+        html:  `"${ht}"`
+        }
+        if(err){
+          reject(`${err}:Something went wrong`)
+        }
+        resolve(option)
+      })
+    } 
+    //  set('mhadewhalay@yhaoo.com','lilmuhy007@gmail.com', 'ayoadeadewale@gmail.com','MAILSUB','We are here!!','<p>Hello!! Dear</p>')
+
+        
+
+
+/** mailOptions().then((successMsg)=>{
+  console.log(successMsg)
+}).catch((errorMsg)=>{
+  console.log(errorMsg)
+})
+
+
+firstPromise().then((successMsg)=>{
+  console.log(successMsg)
+}).catch((errorMsg)=>{
+  console.log(errorMsg)
+}) */
+       
+
+/** module.exports.transporter.sendMail (mailOptions , (error, info) =>{
+            if(error){
+              console.log(err)
+              //res.send('Something went wrong.. '+ error +'');
+            }else{
+              res.send(`Message has been succefully sent to: ${load.t mailOptions.to}`);
+              }
+              }) */
+     
+      
+     
+
+  
