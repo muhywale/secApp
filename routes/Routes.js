@@ -387,15 +387,24 @@ module.exports = {
         },
 
         loanGrant: async (req,res)=>{ 
-            loanM.find({},(err,data)=>{
+        let loanId = req.body._id;
+        loanM.find({_id:loanId}, async (err,data)=>{
                 if(err){
                 console.log(err)
-            }   
+            }
+            let guaArr = [ data.Reg_No, data.Guarantor_1,data.Guarantor_11]       
+         
+            newModel.find({'_id':{$in:guaArr}},(err,dGua)=>{
+                if(err){
+                    res.send('That wasn\'t went well!!')
+                }  
+            //console.log(data)
          let msgBody = async (req,res)=> { 
 
             try{
-            let f = await firstPromise(data.Amount_Req)
-            let f2 = await mailOptions(data.gua1.email,data.gua2.email,'ayoadeadewale5@gmail.com','GUARANTORSHIP CONSENT','ok', f)
+           
+           let f = await firstPromise(data.Amount_Req,dGua.name) 
+            let f2 = await mailOptions(dGua.email[0],dGua.email[1],'ayoadeadewale5@gmail.com','GUARANTORSHIP CONSENT','ok', f)
             
             transporter.sendMail(f2 , (error, info) =>{
                 if(error){
@@ -411,15 +420,15 @@ module.exports = {
 
          msgBody();
          }
-      })},
+      })})},
         loanStand:(req,res)=>{
-            loanM.find({},(err,scr)=>{
+            loanM.find({},(err,loan)=>{
                 if(err){
                     console.log(err)
                 }
                 res.render('loanAppReg.ejs',{
                 title: 'Loan Applicant',
-                loanApp: scr
+                loanApp: loan
                 })
             
         })

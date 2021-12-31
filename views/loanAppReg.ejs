@@ -30,15 +30,15 @@
                 <td> <%= loan.Reg_No %></td>
                 <td> <%= loan.Name %></td>
                 <td> <%= loan.Amount_Req %></td>
-                <td> <%= loan.Guarantor_1%></td>
-                <td> <%= loan.Guarantor_11%></td>
+                <td name ="gua1" > <%= loan.Guarantor_1%></td>
+                <td name ="gua2" > <%= loan.Guarantor_11%></td>
                 <td>
                     <a href="/check" class="btn btn-info btn-sm">Details</a> 
                 </td>
                    <td>
                     <a href="/deny/<%=loan._id%>" class="btn btn-danger btn-sm">Decline</a> 
                    <td>                           
-                   <a href="/notify/" class="btn btn-success btn-sm">Notify</a>  
+                   <a href="/notify/<%=loan._id%>" class="btn btn-success btn-sm">Notify</a>  
                    </td>  
             </tr>
               </div>

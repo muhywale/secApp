@@ -166,6 +166,12 @@ secApp.get('/err',(req,res)=>{
 var sessionStore = new MongoSessionStore({ url:
 credentials.mongo.development.connectionString }); */
 
+loanM.find({},(err,data)=>{
+  if(err){
+  console.log(err)
+}   
+console.log(data)
+})
 
 secApp.listen(port, () => {
     console.log(`Server running on port: ${port}`);
