@@ -387,39 +387,44 @@ module.exports = {
         },
 
         loanGrant: async (req,res)=>{ 
-        let loanId = req.body._id;
-        loanM.find({_id:loanId}, async (err,data)=>{
+        let loanId = req.params._id;
+        loanM.find({_id:loanId},(err,data)=>{
                 if(err){
-                console.log(err)
+                console.log(err)    
             }
-            let guaArr = [ data.Reg_No, data.Guarantor_1,data.Guarantor_11]       
-         
+           // console.log(typeof data, data[0].Name);
+           let guaArr =  [ data[0].Reg_No, data[0].Guarantor_1,data[0].Guarantor_11]       
+            
+           console.log(guaArr);
+
             newModel.find({'_id':{$in:guaArr}},(err,dGua)=>{
                 if(err){
                     res.send('That wasn\'t went well!!')
                 }  
-            //console.log(data)
+           console.log(dGua[1].email, dGua[2].email)
          let msgBody = async (req,res)=> { 
 
             try{
            
-           let f = await firstPromise(data.Amount_Req,dGua.name) 
-            let f2 = await mailOptions(dGua.email[0],dGua.email[1],'ayoadeadewale5@gmail.com','GUARANTORSHIP CONSENT','ok', f)
-            
+           let f = await firstPromise(data[0].Amount_Req,dGua[0].name,dGua[2].name) 
+            let f2 = await mailOptions(dGua[1].email,dGua[2].email,'ayoadeadewale5@gmail.com','GUARANTORSHIP CONSENT','Kindly read this', f)
+             
+            console.log(f2)
+
             transporter.sendMail(f2 , (error, info) =>{
                 if(error){
                   console.log(err)
-                  //res.send('Something went wrong.. '+ error +'');
+                  res.send('Something went wrong.. '+ error +'');
                 }else{
-                  res.send(`Message has been succefully sent to: ${f2.to }`);
+                  res.send(`Message has been succefully sent to: ${f2[0].to }`);
                   }
                   }) 
          }catch{
              req.send('something went wrong!!')
          }
 
-         msgBody();
          }
+         msgBody()
       })})},
         loanStand:(req,res)=>{
             loanM.find({},(err,loan)=>{

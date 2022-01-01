@@ -98,7 +98,7 @@ secApp.get('/login', (req,res)=>{
   }
 
   secApp.get("/user", user);
-  secApp.get('/notify',loanGrant)  ///***NEW*** */
+  secApp.get('/notify/:_id',loanGrant)  ///***NEW*** */
   secApp.get("/members",admin, members); 
    secApp.get("/remove/:_id",admin, rmmem);
    
@@ -166,12 +166,13 @@ secApp.get('/err',(req,res)=>{
 var sessionStore = new MongoSessionStore({ url:
 credentials.mongo.development.connectionString }); */
 
-loanM.find({},(err,data)=>{
+/**newModel.updateOne({_id:904},{email:'mhadewhalay@yahoo.com'},(err,data)=>{
   if(err){
   console.log(err)
 }   
 console.log(data)
-})
+}) */
+
 
 secApp.listen(port, () => {
     console.log(`Server running on port: ${port}`);

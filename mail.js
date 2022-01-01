@@ -4,9 +4,9 @@ const cre = require('./credential')
 const exp = require('express')
 const fs = require('fs')
 const ejs = require('ejs')
-const routes = require('./routes');
-const { resolve } = require('path');
-const { reject } = require('./routes/Routes');
+//const routes = require('./routes');
+//const { resolve } = require('path');
+//const { reject } = require('./routes/Routes');
 
 const mailExp = exp();
 
@@ -27,9 +27,9 @@ console.log(prt);
 ejs.render(tempPath); */
 
 
+let msgBody = (req,res) =>{
 
-  
-module.exports.transporter = nodemailer.createTransport({
+let transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
       type: 'OAuth2',
@@ -39,72 +39,57 @@ module.exports.transporter = nodemailer.createTransport({
       clientSecret: cre.gMailService.clientSecret,
       refreshToken: cre.gMailService.refreshTokem,
     }, 
+    tls: {
+      rejectUnauthorized: false
+    }
   }); 
 
   //  var receivers = ['muhy', 'bro']
  // var html =  
- //  transporter.verify();
+   transporter.verify();
  
- module.exports.firstPromise = new Promise((resolve,reject) => {
-     
-  setTimeout((amount,user)=>{
-      ejs.renderFile( __dirname + "/views/consent.ejs",{
+    ejs.renderFile( __dirname + "/views/consent.ejs",{
         title: 'EMAIL NOTIFICATION',
-        amount: `${amount}`,
-        user: `${user}`
+        amount: 80000,
+        user: 'Lil Muhy'
        },
-       
-        (err,fin)=>{
+      
+       (err,fin)=>{
          if(err){
-           reject(`SOMETHING WENT WRONG:${err}`)
+           console.log(`SOMETHING WENT WRONG:${err}`)
          }else{
-           return resolve(fin)
+           console.log(fin)
          }
-  },5000)
-      })
-    })
   
-  module.exports.mailOptions = new Promise ((resolve,reject) =>{
-     setTimeout((rec1, rec2, sender,sub,t, ht) => {
-      let option = {
-        from:`<${sender}> `,
-        to: `${rec1}, ${rec2}`,
-        subject: sub,
-        text:t,
-        html: ht
-        }
-        resolve(option)
-    },3000)
-           /* 
+  let mailOptions = {
             from: '"Lil Muhy" <ayoadeadewale5@gmail.com>', // sender address
             to: ' "Whalay" <mhadewhalay@yahoo.com>', // list of receivers
-            to: `${ receivers[0],receivers[1]}`, // list of receivers
             subject: "Hello ✔", // Subject line
             text: "Hello, How are you doing bro??", // plain text body
             html: fin // html body
-           */
-
-        
-
-         // console.log(mailOptions.html);
-
-          transporter.sendMail (load /*mailOptions */, (error, info) =>{
+           
+           }
+      
+          transporter.sendMail (mailOptions ,(error, info) =>{
             if(error){
               console.log(err)
-              //res.send('Something went wrong.. '+ error +'');
+            res.send('Something went wrong.. '+ error +'');
             }else{
-              res.send(`Message has been succefully sent to: ${load.t /*mailOptions.to*/}`);
+           res.send(`Message has been succefully sent to: ${mailOptions.to}`);
               }
               })
-     
+
+            })
+      }
       
-      
+         
         // send mail with defined transport object
      
-    /**   mailExp.get('/send', msgBody)
-    
+       mailExp.get('/send', msgBody)
+      //  console.log(typeof  msgBody)
+
       mailExp.listen('3008', ()=>{
         console.log('Listening on port 3008....')
-      }) */
+      }) 
     
     

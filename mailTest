@@ -23,18 +23,19 @@ module.exports.transporter = nodemailer.createTransport ({
     }, 
   }); 
  
-module.exports.firstPromise = (amount,user) =>{ 
+module.exports.firstPromise = (amount,user,gua2) =>{ 
     return new Promise((resolve,reject) => {
       ejs.renderFile( __dirname + "/views/consent.ejs",{
         title: 'EMAIL NOTIFICATION',
         amount: `${amount}`,
-        user: `${user}`
+        user: `${user}`,
+        secGua:`${gua2}`
        },
         (err,fin)=>{
          if(err){
            reject(`SOMETHING WENT WRONG:${err}`)
          }else{
-           return resolve(fin)
+          resolve(fin)
          }
         })
     })}
@@ -44,11 +45,11 @@ module.exports.firstPromise = (amount,user) =>{
   module.exports.mailOptions =(rec1, rec2, sender,sub,t, ht,err) =>{ 
       return new Promise ((resolve,reject) =>{
       let option = {
-        from:`"<${sender}>"`,
-        to: `"<${rec1}>, <${rec2}>"`,
-        subject: `"${sub}"`,
-        text: `"${t}"`,
-        html:  `"${ht}"`
+        from:`<${sender}>`,
+        to: `<${rec1}>,<${rec2}>`,
+        subject: `${sub}`,
+        text: `${t}`,
+        html:  `${ht}`
         }
         if(err){
           reject(`${err}:Something went wrong`)
