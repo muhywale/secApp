@@ -19,7 +19,7 @@ module.exports.transporter = nodemailer.createTransport ({
       pass: cre.gMailService.pass,
       clientId: cre.gMailService.clientId ,
       clientSecret: cre.gMailService.clientSecret,
-      refreshToken: cre.gMailService.refreshTokem,
+      refreshToken: cre.gMailService.refreshToken
     }, 
   }); 
  
@@ -35,7 +35,7 @@ module.exports.firstPromise = (amount,user,gua2) =>{
          if(err){
            reject(`SOMETHING WENT WRONG:${err}`)
          }else{
-          resolve(fin)
+          resolve(fin);
          }
         })
     })}

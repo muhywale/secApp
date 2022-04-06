@@ -2,10 +2,10 @@
 //const cP = require('')
 const credentials = require('./credential');
 var passport = require('passport');
-const { find } = require('async');
+//const { find } = require('async');
 const mongoose = require('mongoose');
 const exp = require('express');
-//const mail = require('./mail');
+const mail = require('./mail');
 
 //const userModel = require('./routes/usermodel');
 const {editMemPg, update , updatePage, members, home, signup, welc, memAppp, memRegSta, nominees,reject, accept,loanApp,rmmem, user, authen, details, loanAppReg, loanStand, more, consent, loanGrant} = require('./routes/Routes');
@@ -179,12 +179,15 @@ secApp.listen(port, () => {
 });
 
  
-/**newModel.findOne({_id:211},(err,res)=>{
+/*newModel.find({},(err,res)=>{
   if(err){
     console.log(err)
   }
-  console.log(res)
+  for(k in res){
+    console.log(res.email)
+  }
 }) */
+
 //***HUGE ROUTES */
  //secApp.get("/",welc)
  

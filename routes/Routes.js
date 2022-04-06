@@ -71,9 +71,10 @@ module.exports = {
                     let   nLr = user.loanRepaid + lr ;
                     let nAss = nSav -nLB - user.totalLoanGuaranted
                     //let nwnetAsset = nSav - nLB- user.totalLoanGuaranted;
-                    newModel.findByIdAndUpdate(memid, {Shares:nShr, Savings:nSav, loanBalance:nLB,loanRepaid:nLr, buildFund:nBf, netAsset:nAss }, {new:true}, (err, upt)=>{
+                    newModel.findByIdAndUpdate(memid, {Shares:nShr, Savings:nSav, loanBalance:nLB,loanRepaid:nLr, buildFund:nBf, netAsset:nAss }, {new:true,useFindAndModify:false}, (err, upt)=>{
                     if(err){
                        return res.status(400).send("Something went wrong iiiii")
+                       console.log(err);
                     }
                        res.redirect('/members')
                        global.dt = Date(Date.now());
@@ -354,7 +355,7 @@ module.exports = {
                             loanRepaid : '',
                             netAsset : ''
                             }).save().then((err,del)=>{
-                                appModel.findByIdAndDelete({_id:id},(err, ans)=>{
+                                appModel.findByIdAndDelete({_id:id},{useFindAndModify:false},(err, ans)=>{
                                                 if(err){
                                                     res.status(400).send(`Can\`t find member with the id: ${id} to delete!`)
                                                 }
@@ -414,7 +415,7 @@ module.exports = {
             transporter.sendMail(f2 , (error, info) =>{
                 if(error){
                   console.log(err)
-                  res.send('Something went wrong.. '+ error +'');
+                  res.send('Something went wrong.. ');
                 }else{
                   res.send(`Message has been succefully sent to: ${f2[0].to }`);
                   }
@@ -556,7 +557,7 @@ module.exports = {
                     }
                      
                         if(user.loanBalance > 0){
-                            loanError.push({msg:'You still have an unsettled loan'})
+                            loanError.push({msg:`You still have an unsettled loan of ${user.loanBalance}`})
                             res.render('loanReqPost.ejs',{
                                 title : 'Loan Application',
                                 loanError,

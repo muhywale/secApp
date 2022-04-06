@@ -37,7 +37,7 @@ let transporter = nodemailer.createTransport({
       pass: cre.gMailService.pass,
       clientId: cre.gMailService.clientId ,
       clientSecret: cre.gMailService.clientSecret,
-      refreshToken: cre.gMailService.refreshTokem,
+      refreshToken: cre.gMailService.refreshToken,
     }, 
     tls: {
       rejectUnauthorized: false
@@ -62,7 +62,7 @@ let transporter = nodemailer.createTransport({
          }
   
   let mailOptions = {
-            from: '"Lil Muhy" <ayoadeadewale5@gmail.com>', // sender address
+            from: '"Lil Muhy" <ayoadeadewale5@gmail.com>', // sender address,
             to: ' "Whalay" <mhadewhalay@yahoo.com>', // list of receivers
             subject: "Hello ✔", // Subject line
             text: "Hello, How are you doing bro??", // plain text body

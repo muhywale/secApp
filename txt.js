@@ -8,6 +8,8 @@ console.log(match); */
 const {mailOptions } = require('./mailTest');
 const {} = require('./mailTest')
 
+transporter
+
 let allPromise = async () =>{
 
   try{ 
