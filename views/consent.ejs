@@ -1,33 +1,33 @@
 <%- include ('coopH/first.ejs') -%>
-    <div class="container-fluid align-content-justify w-50 mt-50 bg-white">
-        <div class="align-content-justify align-content-end align-item-end me-0 w-33">
-            <p>Modern Day CMS Ltd,</p><br><p>7, Osbourne Way, Husbry,</p><br><p>London, United kingdom,</p> 
+    <div style="align-items: center; justify-content: center; width:600px; background-color: aqua; padding: 5px; margin: auto;">
+        <div style="align-items:flex-end; display: block; row-gap: 2px;">
+            <p>Modern Day CMS Ltd,</p><p>7, Osbourne Way, Husbry,</p><br><p>London, United kingdom,</p> 
          </div>
     
-        <h4 style="color: chartreuse; justify-content: center; align-content: center; align-items: center; border-radius: 1.5pc; border-style: groove; width: 50%; margin-left: 25%;" >GUARANTORSHIP CONSENT</h4>
-        <p> <b>Hello </b> , This is a consent letter to inform you that <b> <%= user %> </b> is applying for a loan of  <b>N<%= amount %></b>. So, He/She is has chosen you to be a guarantor for the said amount.
+        <h4 style="color: #006994; justify-content: center; align-content: center; align-items: center; border-radius: 1.5pc; border-style: groove; width: 50%; margin-left: 25%;"  >GUARANTORSHIP CONSENT</h4>
+        <p ><b  style="margin-left: 10%;">Hello </b> , This is a consent letter to inform you that <b> <%= user %> </b> is applying for a loan of  <b>N<%= amount %></b>. So, He/She is has chosen you to be a guarantor for the said amount.
         </p>
     
         <p>
-        <strong style="margin-left: 15%;">Responsibility</strong>
+        <strong style="margin-left: 10%;">Responsibility</strong>
     As laid down in the society’s constitution, if the borrower defaults in loan repayment or unable to pay within the stipulated time of repayment , you shall be responsible for the repayment of the capital and/or any fines, interest that might be added to the loan balance.
         </p>
      
         <p>
-        <strong >Co-Guarantor:</strong> 
+        <strong style="margin-left: 10%;" >Co-Guarantor:</strong> 
         This is also to inform you that Mr/Mrs <b><%= secGua%></b> is joining you for guarantorship for the said loan.
         Incase any liability came up, He/she and you would be responsible for it equally. 
          <br>
     
             Kindly click on the accept button to grant the loan or deny for disclaimer.
         </p>
-        <p>Thanks<br>
+        <p style="position: relative; margin-left: 5%;">Thanks<br>
             Admin.
          </p> 
          
          <div>
-             <button  style="border-style: solid; border-radius: 1.5pc; color: green;" >Accept</button>
-              <button style="border-style: solid; border-radius: 1.5pc; color: red;" >Deny</button>
+            <a href="/accept"><button  style="border-style: solid; border-radius: 1.5pc; color: green;">Accept</button></a>
+          <a href="/deny"><button style="border-style: solid; border-radius: 1.5pc; color: red;">Deny</button></a>
         </div>
     </div> 
 </body>

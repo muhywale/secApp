@@ -8,7 +8,7 @@ const exp = require('express');
 const mail = require('./mail');
 
 //const userModel = require('./routes/usermodel');
-const {editMemPg, update , updatePage, members, home, signup, welc, memAppp, memRegSta, nominees,reject, accept,loanApp,rmmem, user, authen, details, loanAppReg, loanStand, more, consent, loanGrant} = require('./routes/Routes');
+const {editMemPg, update , updatePage, members, home, signup, welc, memAppp, memRegSta, nominees,reject, accept,loanApp,rmmem, user, authen, details, loanAppReg, loanStand, more, consent, loanGrant, check} = require('./routes/Routes');
 const newModel = require('./routes/modelUser');
 const body = require('body-parser')
 const fileup = require('express-fileupload');
@@ -88,6 +88,8 @@ secApp.get('/login', (req,res)=>{
    title:"Welcome"
   })
 })
+
+secApp.get('/send',check); 
  
  //***ADMIN ROUTES */  
  let admin = (req,res,next) =>{
@@ -99,7 +101,7 @@ secApp.get('/login', (req,res)=>{
 
   secApp.get("/user", user);
   secApp.get('/notify/:_id',loanGrant)  ///***NEW*** */
-  secApp.get("/members",admin, members); 
+  secApp.get("/members", members); 
    secApp.get("/remove/:_id",admin, rmmem);
    
   secApp.get('/details/:_id',admin,more); 
@@ -107,7 +109,14 @@ secApp.get('/login', (req,res)=>{
    secApp.post('/update/:_id', admin,update);  
    secApp.get('/app',admin, memRegSta); 
    secApp.get('/app/view/:_id', admin,nominees);
-   //secApp.get('/consent',admin,consent)
+  secApp.get('/consent',(req,res)=>{
+      res.render('consent.ejs',{
+        secGua: 'MuhyWale',
+        user:'Militiaman',
+        title:'@EMAIL',
+        amount:'$10,000'
+      })
+  })
    //secApp.get('/member/:_id',user);
   
    //membership status
@@ -179,7 +188,7 @@ secApp.listen(port, () => {
 });
 
  
-/*newModel.find({},(err,res)=>{
+/**newModel.findOne({role:'admin'},(err,res)=>{
   if(err){
     console.log(err)
   }

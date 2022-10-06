@@ -1,5 +1,5 @@
 <%- include ('coopH/first.ejs') -%>
-<div class="navbar  navbar-expand-sm bg-light navbar-primary" style="border: 3px solid blue; border-radius: 2pc;">
+<div class="navbar  navbar-expand-sm bg-white navbar-primary  w-full">
   <ul class="navbar-nav">
       <li class="navbar-item">
         <a  class="nav-link active" href="/login">HOME</a>
@@ -24,18 +24,15 @@
     <li class="navbar-item">
       <a  class="nav-link" href="/loanApp">LOAN</a>
   </li>
+  <span>
+    <a  class="nav-link" href="/user">@MYACCOUNT</a>
+   </span>
   </ul>
-  <div class="d-inline align-items-end align-items-end">
-    <span style="margin-right: 0;">
-      <a  class="nav-link" href="/user">@MYACCOUNT</a>
-     </span>
-  </div>
-  
 </div>
 
-    <div class="login align-center mt-10"> 
-            <div class="align-center justify-content text-center"><h4  style="color: white; background-color: black">Sign In</h4></div>
-            
+        <div class="align-center justify-content text-center mb-2 mt-2"><h4  style="color: white; width: 400px; border-radius: 4px; background-color: black; align-content: center; justify-content: center; margin:auto">Sign In</h4></div>
+            <div class="login align-center mt-1 shadow-lg drop-shadow-lg" > 
+
                 <div class="align-center justify-content">
                   <a href="http://localhost:3009/auth/facebook"><h4 style="color: white; background-color: blueviolet; border: 2px solid black; border-radius: 1.5pc; margin-left: 40px; margin-right: 40px; align-items: center; justify-content: center;" class="text-center">Login via Facebook</h4></a>
                 </div>
@@ -53,7 +50,7 @@
                         <button type="submit" class="btn btn-success mt-10" style="margin-left: 10px;">Login</button>
                   </div>
                     </form>
-                    <div style="color: brown; background-color: #535599; width: 80%; margin:auto; border:solid black 3px; border-radius: 1.5pc; align-items: center; justify-content: center;">
+                    <div class="mt-3" style="color: brown; background-color: #535599; width: 80%; margin:auto; border:solid black 3px; border-radius: 1.5pc; align-items: center; justify-content: center;">
                                 <h5 style="color: red;" class="text-center"> Not a Member Yet? </h5> 
     
                      <div class="d-flex align-content-center justify-content-center"> <button class="btn-success" style="border-radius: 4px solid black; border-radius: 1.5pc;"   ><a  href="/signup">Sign Up</a></button> </div>

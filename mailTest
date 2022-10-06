@@ -19,17 +19,19 @@ module.exports.transporter = nodemailer.createTransport ({
       pass: cre.gMailService.pass,
       clientId: cre.gMailService.clientId ,
       clientSecret: cre.gMailService.clientSecret,
-      refreshToken: cre.gMailService.refreshToken
-    }, 
-  }); 
+      refreshToken: cre.gMailService.refreshToken,
+      accessToken:cre.gMailService.access_token
+      }, 
+    }
+  ); 
  
-module.exports.firstPromise = (amount,user,gua2) =>{ 
+module.exports.firstPromise = (amount,user,gua) =>{ 
     return new Promise((resolve,reject) => {
       ejs.renderFile( __dirname + "/views/consent.ejs",{
         title: 'EMAIL NOTIFICATION',
         amount: `${amount}`,
         user: `${user}`,
-        secGua:`${gua2}`
+        secGua:`${gua}`
        },
         (err,fin)=>{
          if(err){
@@ -42,7 +44,7 @@ module.exports.firstPromise = (amount,user,gua2) =>{
 
 
  
-  module.exports.mailOptions =(rec1, rec2, sender,sub,t, ht,err) =>{ 
+  module.exports.mailOptions =(rec1, rec2,sender,sub,t, ht,err) =>{ 
       return new Promise ((resolve,reject) =>{
       let option = {
         from:`<${sender}>`,
